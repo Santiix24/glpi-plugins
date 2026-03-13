@@ -1,0 +1,442 @@
+/* ================================================================
+   TicketSat  Estilos profesionales v2
+   ================================================================ */
+
+/* ================================================================
+   BANNER FLOTANTE DE ENCUESTA PENDIENTE
+   ================================================================ */
+.ts-pending-banner {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    min-width: 340px;
+    max-width: 440px;
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,.22), 0 2px 8px rgba(0,0,0,.12);
+    animation: ts-slide-in .4s cubic-bezier(.22,1,.36,1);
+    border: none;
+    overflow: hidden;
+}
+@keyframes ts-slide-in {
+    from { transform: translateY(60px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+.ts-pending-banner .ts-banner-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 18px 18px 20px;
+    background: linear-gradient(135deg, #1a2e6b 0%, #3358c4 60%, #5b6de2 100%);
+    color: #fff;
+}
+.ts-pending-banner .ts-banner-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #FFD700;
+    filter: drop-shadow(0 0 6px rgba(255,215,0,.5));
+}
+.ts-pending-banner .ts-banner-body { flex: 1; min-width: 0; }
+.ts-pending-banner .ts-banner-eyebrow {
+    font-size: .72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    opacity: .75;
+    margin-bottom: 4px;
+}
+.ts-pending-banner .ts-banner-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ts-pending-banner .ts-banner-badge {
+    display: inline-block;
+    background: rgba(255,255,255,.2);
+    color: #fff;
+    font-size: .7rem;
+    font-weight: 700;
+    padding: 1px 8px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+.ts-pending-banner .ts-banner-sub {
+    font-size: .8rem;
+    opacity: .85;
+    margin-bottom: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ts-pending-banner .ts-survey-link {
+    display: inline-block;
+    background: #fff;
+    color: #1a2e6b;
+    font-weight: 700;
+    font-size: .82rem;
+    padding: 5px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background .2s, transform .15s;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+.ts-pending-banner .ts-survey-link:hover {
+    background: #e8f0ff;
+    transform: translateY(-1px);
+}
+.ts-pending-banner .ts-close-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,.65);
+    font-size: 1.1rem;
+    padding: 2px 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+    line-height: 1;
+    transition: color .2s;
+}
+.ts-pending-banner .ts-close-btn:hover { color: #fff; }
+
+/* ================================================================
+   FORMULARIO DE RESPUESTA (respond.php)
+   ================================================================ */
+.ts-survey-wrapper {
+    min-height: 100vh;
+    background: #f0f4f8;
+    padding: 30px 16px 60px;
+}
+.ts-survey-card {
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 32px rgba(0,0,0,.12);
+    background: #fff;
+}
+.ts-survey-header {
+    padding: 32px 36px 28px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--ts-color,#4472C4) 0%, #1e3a6e 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+.ts-header-content { flex: 1; min-width: 0; }
+.ts-logo-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ts-survey-header .ts-logo {
+    max-height: 80px;
+    max-width: 200px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    /* Sin fondo: soporta PNG con transparencia */
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    /* Suaviza sobre gradientes oscuros/claros */
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
+}
+.ts-survey-header h3 { font-size: 1.45rem; font-weight: 700; margin: 0 0 4px; }
+.ts-survey-header .ts-ticket-ref { font-size: .85rem; opacity: .75; }
+.ts-survey-header .ts-survey-desc { margin-top: 12px; font-size: .93rem; opacity: .88; font-style: italic; }
+.ts-progress-bar-wrap { background: rgba(255,255,255,.2); height: 5px; border-radius: 4px; margin-top: 16px; overflow: hidden; }
+.ts-progress-bar-fill { height: 100%; background: rgba(255,255,255,.85); border-radius: 4px; transition: width .4s ease; }
+.ts-survey-body { padding: 32px 36px; }
+
+/* ---- Bloque de pregunta ---- */
+.ts-q-block {
+    margin-bottom: 28px;
+    padding: 22px 24px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    background: #fafbff;
+    transition: border-color .2s, box-shadow .2s;
+}
+.ts-q-block:focus-within {
+    border-color: var(--ts-color,#4472C4);
+    box-shadow: 0 0 0 3px rgba(68,114,196,.1);
+}
+.ts-q-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--ts-color,#4472C4);
+    color: #fff;
+    font-size: .78rem;
+    font-weight: 700;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+.ts-q-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    line-height: 1.45;
+}
+.ts-q-text .ts-required { color: #e53e3e; margin-left: 4px; }
+
+/* ---- Escala 1-10 ---- */
+.ts-scale-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.ts-scale-btn { cursor: pointer; position: relative; }
+.ts-scale-btn input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+.ts-scale-btn span {
+    display: flex; align-items: center; justify-content: center;
+    width: 46px; height: 46px;
+    border: 2px solid #cbd5e1;
+    border-radius: 10px;
+    font-weight: 700; font-size: 1rem;
+    background: #fff; color: #475569;
+    transition: all .18s ease;
+    user-select: none;
+}
+.ts-scale-btn:hover span {
+    background: rgba(68,114,196,.08);
+    border-color: var(--ts-color,#4472C4);
+    color: var(--ts-color,#4472C4);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 14px rgba(68,114,196,.18);
+}
+.ts-scale-btn input:checked + span {
+    background: var(--ts-color,#4472C4);
+    border-color: var(--ts-color,#4472C4);
+    color: #fff;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 6px 18px rgba(68,114,196,.35);
+}
+.ts-scale-labels { display: flex; justify-content: space-between; margin-top: 8px; font-size: .78rem; color: #94a3b8; }
+
+/* ---- Estrellas 1-5 (CSS inverso) ---- */
+.ts-stars-group { display: flex; gap: 4px; margin-top: 6px; flex-direction: row-reverse; justify-content: flex-end; }
+.ts-stars-group input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+.ts-stars-group label {
+    cursor: pointer;
+    font-size: 2.6rem;
+    color: #cbd5e1;
+    transition: color .12s, transform .12s;
+    line-height: 1;
+}
+.ts-stars-group label:hover,
+.ts-stars-group label:hover ~ label { color: #F59E0B; transform: scale(1.15); }
+.ts-stars-group input:checked ~ label { color: #F59E0B; }
+.ts-stars-val { font-size: .85rem; color: #64748b; margin-top: 4px; display: block; }
+
+/* ---- Opciones radio/checkbox ---- */
+.ts-option-item {
+    display: flex;
+    align-items: center;
+    padding: 11px 16px;
+    margin-bottom: 7px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+    user-select: none;
+}
+.ts-option-item:hover { border-color: var(--ts-color,#4472C4); background: rgba(68,114,196,.05); }
+.ts-option-item input { margin-right: 12px; cursor: pointer; width: 18px; height: 18px; accent-color: var(--ts-color,#4472C4); }
+.ts-option-item span { font-size: .95rem; color: #374151; }
+.ts-option-checked { border-color: var(--ts-color,#4472C4) !important; background: rgba(68,114,196,.09) !important; }
+.ts-option-checked span { font-weight: 600; color: var(--ts-color,#4472C4); }
+
+/* ---- Textarea ---- */
+.ts-open-text {
+    border: 1.5px solid #e2e8f0;
+    border-radius: 9px;
+    padding: 12px 14px;
+    width: 100%;
+    font-size: .95rem;
+    resize: vertical;
+    transition: border-color .15s, box-shadow .15s;
+    outline: none;
+    color: #374151;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+.ts-open-text:focus { border-color: var(--ts-color,#4472C4); box-shadow: 0 0 0 3px rgba(68,114,196,.1); }
+
+/* ---- Dropdown tipo pregunta ---- */
+.ts-dropdown {
+    width: 100%; max-width: 400px;
+    border: 1.5px solid #d1d5db; border-radius: 8px;
+    padding: 10px 14px; font-size: .95rem;
+    color: #374151; background: #fafafa;
+    font-family: inherit; outline: none;
+    cursor: pointer; transition: border-color .2s;
+    margin-top: 4px;
+}
+.ts-dropdown:focus { border-color: var(--ts-color,#4472C4); box-shadow: 0 0 0 3px rgba(68,114,196,.1); background: #fff; }
+
+/* ---- Botón enviar ---- */
+.ts-submit-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 36px;
+    background: var(--ts-color,#4472C4);
+    color: #fff;
+    border: none; border-radius: 10px;
+    font-size: 1rem; font-weight: 700;
+    cursor: pointer;
+    transition: filter .2s, transform .15s, box-shadow .2s;
+    box-shadow: 0 4px 16px rgba(68,114,196,.3);
+    font-family: inherit;
+}
+.ts-submit-btn:hover { filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(68,114,196,.4); }
+.ts-submit-btn:active { transform: translateY(0); filter: brightness(.95); }
+
+/* ---- Thank-you / Already done ---- */
+.ts-thanks-wrap { text-align: center; padding: 56px 24px; }
+.ts-thanks-icon { font-size: 5rem; margin-bottom: 16px; }
+.ts-thanks-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; color: #1e293b; }
+.ts-thanks-sub { color: #64748b; font-size: 1rem; margin-bottom: 24px; }
+
+/* ================================================================
+   ADMIN: LISTA DE ENCUESTAS (survey.php)
+   ================================================================ */
+.ts-admin-header {
+    background: linear-gradient(135deg,
+        color-mix(in srgb, var(--tblr-primary, #2e62bb) 60%, #000) 0%,
+        var(--tblr-primary, #2e62bb) 100%);
+    color: var(--tblr-primary-fg, #fff);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.ts-admin-header h2 { font-size: 1.5rem; font-weight: 700; margin: 0; }
+.ts-admin-header p { opacity: .8; margin: 4px 0 0; font-size: .88rem; }
+/* Botón glass: solo dentro del header oscuro */
+.ts-new-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 10px 20px;
+    background: rgba(255,255,255,.15);
+    color: var(--tblr-primary-fg, #fff);
+    border-radius: 10px; font-weight: 700; font-size: .9rem;
+    text-decoration: none; border: 1.5px solid rgba(255,255,255,.45);
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    backdrop-filter: blur(4px);
+    transition: background .2s, box-shadow .2s;
+}
+.ts-new-btn:hover { background: rgba(255,255,255,.28); box-shadow: 0 6px 18px rgba(0,0,0,.15); color: var(--tblr-primary-fg, #fff); }
+
+/* Botón primario: usa colores del tema GLPI actual (detecta el tema automáticamente) */
+.ts-btn-primary {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 10px 22px;
+    background: var(--tblr-primary, #2e62bb);
+    color: var(--tblr-primary-fg, #fff);
+    border-radius: 10px; font-weight: 700; font-size: .9rem;
+    text-decoration: none; border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    transition: opacity .2s, box-shadow .2s;
+}
+.ts-btn-primary:hover { opacity: .88; box-shadow: 0 5px 16px rgba(0,0,0,.2); color: var(--tblr-primary-fg, #fff); }
+
+.ts-survey-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.ts-survey-card-admin {
+    border-radius: 14px;
+    border: 1.5px solid #e2e8f0;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    transition: box-shadow .2s, transform .2s;
+}
+.ts-survey-card-admin:hover { box-shadow: 0 8px 28px rgba(0,0,0,.12); transform: translateY(-3px); }
+.ts-card-top { height: 6px; }
+.ts-card-body { padding: 20px 22px 14px; }
+.ts-card-title { font-size: 1.05rem; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+.ts-card-desc { font-size: .84rem; color: #64748b; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.ts-card-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.ts-card-stats {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 10px 4px;
+    background: #f8fafc;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    justify-content: space-around;
+    border: 1px solid #e2e8f0;
+}
+.ts-stat-item { text-align: center; flex: 1; min-width: 0; padding: 0 2px; }
+.ts-stat-item .val { font-size: 1.2rem; font-weight: 800; color: #1e293b; display: block; line-height: 1.2; }
+.ts-stat-item .lbl { font-size: .62rem; color: #94a3b8; text-transform: uppercase; letter-spacing: .01em; display: block; margin-top: 2px; white-space: nowrap; }
+.ts-stat-divider { width: 1px; background: #e2e8f0; height: 32px; flex-shrink: 0; }
+
+.ts-card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 10px 12px; background: #f8fafc; border-top: 1px solid #f1f5f9; }
+.ts-action-btn {
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+    padding: 8px 6px; border-radius: 8px; font-size: .8rem; font-weight: 600;
+    text-decoration: none; border: 1.5px solid transparent; cursor: pointer;
+    transition: all .15s; background: none; white-space: nowrap;
+}
+.ts-action-btn.edit { color: #2563eb; border-color: #bfdbfe; background: #eff6ff; }
+.ts-action-btn.edit:hover { background: #dbeafe; }
+.ts-action-btn.qs   { color: #7c3aed; border-color: #ddd6fe; background: #f5f3ff; }
+.ts-action-btn.qs:hover { background: #ede9fe; }
+.ts-action-btn.dash { color: #0891b2; border-color: #a5f3fc; background: #ecfeff; }
+.ts-action-btn.dash:hover { background: #cffafe; }
+.ts-action-btn.del  { color: #dc2626; border-color: #fecaca; background: #fff5f5; }
+.ts-action-btn.del:hover { background: #fecaca; }
+
+.ts-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 20px; font-size: .76rem; font-weight: 600; }
+.ts-badge.active   { background: #dcfce7; color: #15803d; }
+.ts-badge.inactive { background: #f1f5f9; color: #475569; }
+.ts-badge.solve    { background: #eff6ff; color: #1d4ed8; }
+.ts-badge.close    { background: #fef3c7; color: #92400e; }
+
+/* ================================================================
+   ADMIN: FORMULARIO DE ENCUESTA
+   ================================================================ */
+.ts-form-section { border-radius: 12px; border: 1.5px solid #e2e8f0; overflow: hidden; margin-bottom: 20px; background: #fff; }
+.ts-form-section-header {
+    padding: 14px 20px; background: #f8fafc; border-bottom: 1px solid #e2e8f0;
+    font-weight: 700; font-size: .92rem; color: #374151;
+    display: flex; align-items: center; gap: 8px;
+}
+.ts-form-section-body { padding: 20px 22px; }
+
+/* ================================================================
+   ADMIN: BUILDER DE PREGUNTAS
+   ================================================================ */
+.ts-q-admin-item { border: 1.5px solid #e2e8f0; border-radius: 12px; margin-bottom: 10px; background: #fff; overflow: hidden; transition: border-color .2s; }
+.ts-q-admin-item:hover { border-color: #94a3b8; }
+.ts-q-admin-head { display: flex; align-items: center; gap: 12px; padding: 13px 16px; }
+.ts-q-admin-num { width: 28px; height: 28px; border-radius: 50%; background: #4472C4; color: #fff; font-weight: 700; font-size: .8rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ts-q-admin-text { flex: 1; font-weight: 600; color: #1e293b; font-size: .95rem; }
+.ts-q-type-pill { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 20px; font-size: .76rem; font-weight: 600; background: #eff6ff; color: #2563eb; }
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 600px) {
+    .ts-survey-header { padding: 22px 18px; flex-direction: column; align-items: flex-start; }
+    .ts-logo-wrap { align-self: flex-end; margin-top: -60px; }
+    .ts-survey-body   { padding: 20px 16px; }
+    .ts-scale-btn span { width: 36px; height: 36px; font-size: .85rem; }
+    .ts-stars-group label { font-size: 2rem; }
+    .ts-submit-btn { width: 100%; justify-content: center; }
+    .ts-survey-grid { grid-template-columns: 1fr; }
+    .ts-admin-header { flex-direction: column; align-items: flex-start; }
+    .ts-card-actions { flex-wrap: wrap; }
+}
