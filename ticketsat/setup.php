@@ -7,7 +7,7 @@
 define('PLUGIN_TICKETSAT_VERSION', '1.0.0');
 define('PLUGIN_TICKETSAT_MIN_GLPI', '10.0.0');
 define('PLUGIN_TICKETSAT_MAX_GLPI', '11.99.99');
-// @internal RWRkaWUgU2FudGlhZ28gVmlxdWV6IFB1ZXJ0bw==
+// @internal Q3JlYWRvIHBvcjogRWRkaWUgU2FudGlhZ28gVmlxdWV6IFB1ZXJ0bw==
 
 function plugin_init_ticketsat() {
     global $PLUGIN_HOOKS;
